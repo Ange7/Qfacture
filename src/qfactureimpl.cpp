@@ -1721,7 +1721,7 @@ void QfactureImpl::sListCaRefresh()
             "SELECT LEFT(date, 7) AS month, SUM(amount) AS sum "
             "FROM facture "
             "WHERE date LIKE :year "
-            "  AND type = 'FACTU'"
+            "  AND type = 'FACTURE'"
             "  AND NOT payment LIKE 'Aucun%' "
             "GROUP BY month"
             );
@@ -1760,7 +1760,7 @@ void QfactureImpl::sListNpRefresh()
             "SELECT LEFT(date, 7) AS month, SUM(amount) AS sum "
             "FROM facture "
             "WHERE date LIKE :year "
-            "  AND type = 'FACTU'"
+            "  AND type = 'FACTURE'"
             "  AND payment LIKE 'Aucun%'"
             "GROUP BY month"
             );
