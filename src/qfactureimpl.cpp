@@ -171,8 +171,18 @@ QString QfactureImpl::makeFactureReference(QString number, QString date)
 
 QString QfactureImpl::makeLimitDate(QDate date)
 {
-  return date.addMonths(1).toString("yyyy-MM-dd"); // format explicit de date
+  return date.addMonths(1).toString("dd/MM/yyyy"); // format explicit de date
 }
+
+/*
+ * Format date
+ */
+QString QfactureImpl::displayDate(QDate date)
+{
+  return date.toString("dd/MM/yyyy"); // format explicit de date
+}
+
+
 
 /**
  * Compacte une date pour ensuite être utilisée dans les références de
@@ -1538,7 +1548,7 @@ void QfactureImpl::on_fPrint_clicked()
     query.next();
 
     invoice_tpl.replace("{% ref %}", makeFactureReference(fNum->text(), fDate->text()))
-            .replace("{% invoice_date %}", query.value(6).toString())
+            .replace("{% invoice_date %}", displayDate(query.value(6).toDate()))
             .replace("{% invoice_limit_date %}", makeLimitDate(query.value(6).toDate()))
             .replace("{% invoice_comment %}", query.value(2).toString())
             .replace("{% invoice_amount %}", query.value(1).toString())
